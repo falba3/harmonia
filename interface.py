@@ -14,7 +14,5 @@ r = st.button("Request:")
 if r:
     st.text("You requested")
     with open('requests_log.txt', 'w') as file:
-        # new_reqs = n_reqs + 1
-        # print(file, new_reqs)
-        pass
+        file.write(str(n_reqs + 1))
 
