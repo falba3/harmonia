@@ -18,15 +18,14 @@ def get_oauth_token():
     params = urllib.urlencode({'grant_type': 'client_credentials'})
     content = rq.post(url, headers=headers, params=params)
     bearer_token = json.loads(content.text)['access_token']
-    # with open('bearer_token.json', 'w') as json_file:
-    #     json.dump(bearer_token, json_file, indent=4)
+    # with open('bearer_token', 'w') as file:
+    #      json.dump(bearer_token, file, indent=4)
     return bearer_token
 
 
 def search_api(token, url):
     headers = {'Content-Type': 'Content-Type: multipart/form-data;', 'Authorization' : 'Bearer ' + token}
     content = rq.post(url, headers = headers)
-    # print(json.loads(content.text).keys())
     result = json.loads(content.text)
     return result['elementList']
 
@@ -42,23 +41,21 @@ distance = '60000'
 sort = 'desc'
 bankOffer = 'false'
 
-# df_tot = pd.DataFrame()
-# limit = 2000
-#
-# for i in range(1,limit):
-#     url = ('https://api.idealista.com/3.5/'+country+'/search?operation='+operation+#"&locale="+locale+
-#            '&maxItems='+max_items+
-#            '&order='+order+
-#            '&center='+center+
-#            '&distance='+distance+
-#            '&propertyType='+property_type+
-#            '&sort='+sort+
-#            '&numPage=%s'+
-#            '&language='+language) %(i)
-#     a = search_api(get_oauth_token(), url)
-#     with open('info', 'w') as file:
-#         file.write(str(a))
-#     df = pd.DataFrame.from_dict(a)
-#     df_tot = pd.concat([df_tot,df])
-#     df_tot = df_tot.reset_index()
-#     df_tot.to_csv('df.csv')
+df_tot = pd.DataFrame()
+limit = 2
+
+for i in range(1,limit):
+    url = ('https://api.idealista.com/3.5/'+country+'/search?operation='+operation+#"&locale="+locale+
+           '&maxItems='+max_items+
+           '&order='+order+
+           '&center='+center+
+           '&distance='+distance+
+           '&propertyType='+property_type+
+           '&sort='+sort+
+           '&numPage=%s'+
+           '&language='+language) %(i)
+    a = search_api(get_oauth_token(), url)
+    df = pd.DataFrame.from_dict(a['elementList'])
+    df_tot = pd.concat([df_tot,df])
+
+df_tot = df_tot.reset_index()
