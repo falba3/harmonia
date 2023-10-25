@@ -47,7 +47,7 @@ def search_api(token, url):
 inputs = {
     'country': 'es', #values: es, it, pt
     'locale': 'es', #values: es, it, pt, en, ca
-    'language': 'en',
+    'language': 'es',
     'max_items': '50',
     'operation': 'sale',
     'property_type': 'homes',
@@ -61,11 +61,11 @@ inputs = {
 
 # Initialize empty dataframe to fill and limit of searches
 df_tot = pd.DataFrame()
-limit = 100
+limit = 2
 
 # Iterating over the limit of searches with the inputs
 # Each iteration of a search inserts a record into the df
-for i in range(1, limit):
+for i in range(1, limit + 1):
     url = (
         'https://api.idealista.com/3.5/' + inputs['country'] + '/search?operation=' + inputs['operation'] +
         '&maxItems=' + inputs['max_items'] +
