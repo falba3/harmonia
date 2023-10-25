@@ -4,14 +4,21 @@ import urllib.parse
 import requests as rq
 import base64
 
+# Juan's Keys
+# Apikey: 6wiyhy9vfz8e4u0m8e56legl0jr21mvf
+# Secret: QK5HdSIKI20n
+
+# Franco's Keys
+# Apikey: 2zky9zdsmvowg05bx61lsmyvxthkewum
+# Secret: HtvQmb7FUAzj
 
 
 # Gets the bearer_token
 def get_oauth_token():
     url = "https://api.idealista.com/oauth/token"
 
-    apikey= '2zky9zdsmvowg05bx61lsmyvxthkewum'
-    secret= 'HtvQmb7FUAzj'
+    apikey= '6wiyhy9vfz8e4u0m8e56legl0jr21mvf'
+    secret= 'QK5HdSIKI20n'
 
     auth = base64.b64encode((apikey + ':' + secret).encode('utf-8'))
     headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
