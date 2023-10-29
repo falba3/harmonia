@@ -39,6 +39,7 @@ def search_api(token, url):
     if 'result' in response:
         return response['result']
     else:
+        print("Unsuccesful search")
         return []
 
 
@@ -74,16 +75,21 @@ for i in range(1, limit + 1):
         '&distance=' + inputs['distance'] +
         '&propertyType=' + inputs['property_type'] +
         '&sort=' + inputs['sort'] +
-        '&numPage=%s' % i +
+        '&numPage=s' +
         '&language=' + inputs['language']
     )
 
+
     search_results = search_api(get_oauth_token(), url)
     if not search_results:
+        # print(len(search_results))
         print("No results")
+        df_tot = df_tot.reset_index()
+        df_tot.to_csv('df.csv')
         break
     print(f"Successful search {i}")
 
+    # print(type(search_results))
     df = pd.DataFrame.from_dict(search_results['elementList'])
     df_tot = pd.concat([df_tot, df])
 
