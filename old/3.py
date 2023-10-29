@@ -32,7 +32,7 @@ def search_api(token, url):
 country = 'es' #values: es, it, pt
 locale = 'es' #values: es, it, pt, en, ca
 language = 'es'
-max_items = '2000'
+max_items = '25'
 operation = 'sale'
 property_type = 'homes'
 order = 'priceDown'
@@ -42,7 +42,7 @@ sort = 'desc'
 bankOffer = 'false'
 
 df_tot = pd.DataFrame()
-limit = 2
+limit = 2000
 
 for i in range(1,limit):
     url = ('https://api.idealista.com/3.5/'+country+'/search?operation='+operation+#"&locale="+locale+
