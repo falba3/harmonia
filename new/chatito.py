@@ -17,8 +17,8 @@ import base64
 def get_oauth_token():
     url = "https://api.idealista.com/oauth/token"
 
-    apikey= '6wiyhy9vfz8e4u0m8e56legl0jr21mvf'
-    secret= 'QK5HdSIKI20n'
+    apikey= '2zky9zdsmvowg05bx61lsmyvxthkewum'
+    secret= 'HtvQmb7FUAzj'
 
     auth = base64.b64encode((apikey + ':' + secret).encode('utf-8'))
     headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -62,30 +62,31 @@ inputs = {
 
 # Initialize empty dataframe to fill and limit of searches
 df_tot = pd.DataFrame()
-limit = 2
+limit = 2000
 
 # Iterating over the limit of searches with the inputs
 # Each iteration of a search inserts a record into the df
 for i in range(1, limit + 1):
     url = (
-        'https://api.idealista.com/3.5/' + inputs['country'] + '/search?operation=' + inputs['operation'] +
+        'https://api.idealista.com/3.5/' + inputs['country'] + '/search?operation=' + inputs['operation'] + #"%locale="+locale+
         '&maxItems=' + inputs['max_items'] +
         '&order=' + inputs['order'] +
         '&center=' + inputs['center'] +
         '&distance=' + inputs['distance'] +
         '&propertyType=' + inputs['property_type'] +
         '&sort=' + inputs['sort'] +
-        '&numPage=s' +
+        '&numPage=%s' +
         '&language=' + inputs['language']
-    )
+    ) %(i)
 
 
     search_results = search_api(get_oauth_token(), url)
+    print(type(search_results))
     if not search_results:
         # print(len(search_results))
         print("No results")
         df_tot = df_tot.reset_index()
-        df_tot.to_csv('df.csv')
+        df_tot.to_csv('df_2.csv')
         break
     print(f"Successful search {i}")
 
@@ -94,4 +95,4 @@ for i in range(1, limit + 1):
     df_tot = pd.concat([df_tot, df])
 
 df_tot = df_tot.reset_index()
-df_tot.to_csv('df.csv')
+df_tot.to_csv('df_2.csv')
