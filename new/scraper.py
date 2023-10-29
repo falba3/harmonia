@@ -47,7 +47,7 @@ sort = 'desc'
 bankOffer = 'false'
 
 df_tot = pd.DataFrame()
-limit = 70
+limit = 78 # 78 + 12 = 90 * 25 = 2250
 
 for i in range(1,limit):
     try:
