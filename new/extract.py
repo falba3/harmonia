@@ -15,4 +15,4 @@ for record in data:
 
 df.to_csv('df.csv')
 
-# Used to extract the old string!!!
+# Used to extract the old string!!! (info)
