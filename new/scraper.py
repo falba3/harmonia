@@ -14,8 +14,8 @@ import base64
 
 def get_oauth_token():
     url = "https://api.idealista.com/oauth/token"
-    apikey = '2zky9zdsmvowg05bx61lsmyvxthkewum'
-    secret = 'HtvQmb7FUAzj'
+    apikey = '6wiyhy9vfz8e4u0m8e56legl0jr21mvf'
+    secret = 'QK5HdSIKI20n'
     auth_str = f"{apikey}:{secret}"
     auth_bytes = auth_str.encode('utf-8')  # Encode the string to bytes
     auth = base64.b64encode(auth_bytes).decode('utf-8')  # Encode to base64 and decode to a string
@@ -42,14 +42,19 @@ max_items = '25'
 operation = 'sale'
 property_type = 'homes'
 order = 'priceDown'
-center = '40.4026,-3.6880' # 40.4667, -3.6889 (plaza de castilla) # 40.4169, -3.7032 (sol) # 40.4026,-3.6880 (atocha)
+center = '40.4378,-3.6904'
 distance = '60000'
 sort = 'desc'
 bankOffer = 'false'
+# 40.4667,-3.6889 (plaza de castilla)
+# 40.4169,-3.7032 (sol)
+# 40.4026,-3.6880 (atocha)
+# 40.4144,-3.6693 (sainz de baranda)
+# 40.4378,-3.6904 (gregorio marañon)
+
 
 df_tot = pd.DataFrame()
-# limit = 78 # 78 + 12 = 90 * 25 = 2250
-limit = 100
+limit = 100 # limit * max_items = listings
 
 for i in range(1,limit):
     try:
@@ -66,22 +71,24 @@ for i in range(1,limit):
         if not res:
             print("No results")
             df_tot = df_tot.reset_index()
-            df_tot.to_csv('3df.csv')
+            df_tot.to_csv('5df.csv')
             break
         print(f"Successful search {i}")
         df = pd.DataFrame(res)
         df_tot = pd.concat([df_tot,df])
     except Exception as e:
-        df_tot.to_csv('3df.csv')
+        df_tot.to_csv('5df.csv')
         print(e)
         break
 
 
 
 df_tot = df_tot.reset_index()
-df_tot.to_csv('3df.csv')
+df_tot.to_csv('5df.csv')
 
 
-# with juan's keys i first got <2000 from SOL
-# with juan's keys i got <2000 from PLAZA DE CASTILLA
-# with my keys i got <2500 from ATOCHA
+# 1df: with juan's keys i first got <2000 from SOL
+# 2df: with juan's keys i got <2000 from PLAZA DE CASTILLA
+# 3df: with my keys i got <2500 from ATOCHA
+# 4df: with my keys i got 25 from SAINZ DE BARANDA
+# 5df: with juan's keys i got 200 from GREGORIO MARAÑON
