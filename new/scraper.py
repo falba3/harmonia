@@ -43,7 +43,7 @@ operation = 'sale'
 property_type = 'homes'
 order = 'priceDown'
 center = '40.4378,-3.6904'
-distance = '60000'
+distance = '6000'
 sort = 'desc'
 bankOffer = 'false'
 # 40.4667,-3.6889 (plaza de castilla)
