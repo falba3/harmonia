@@ -41,8 +41,8 @@ language = 'es'
 max_items = '25'
 operation = 'sale'
 property_type = 'homes'
-order = 'priceDown'
-center = '40.4378,-3.6904'
+order = 'distance'
+center = '40.4667,-3.6889'
 distance = '6000'
 sort = 'desc'
 bankOffer = 'false'
@@ -71,20 +71,20 @@ for i in range(1,limit):
         if not res:
             print("No results")
             df_tot = df_tot.reset_index()
-            df_tot.to_csv('5df.csv')
+            df_tot.to_csv('6df.csv')
             break
         print(f"Successful search {i}")
         df = pd.DataFrame(res)
         df_tot = pd.concat([df_tot,df])
     except Exception as e:
-        df_tot.to_csv('5df.csv')
+        df_tot.to_csv('6df.csv')
         print(e)
         break
 
 
 
 df_tot = df_tot.reset_index()
-df_tot.to_csv('5df.csv')
+df_tot.to_csv('6df.csv')
 
 
 # 1df: with juan's keys i first got <2000 from SOL
@@ -92,3 +92,5 @@ df_tot.to_csv('5df.csv')
 # 3df: with my keys i got <2500 from ATOCHA
 # 4df: with my keys i got 25 from SAINZ DE BARANDA
 # 5df: with juan's keys i got 200 from GREGORIO MARAÑON
+
+# 6df: with juan's keys i got __ from PLAZA DE CASTILLA
