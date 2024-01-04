@@ -12,7 +12,7 @@ import base64
 # Apikey: 2zky9zdsmvowg05bx61lsmyvxthkewum
 # Secret: HtvQmb7FUAzj
 
-name = 'atocha.csv'
+name = 'lastablas.csv' #!
 dictionary = {'Franco': {'key': '2zky9zdsmvowg05bx61lsmyvxthkewum',
                          'secret': 'HtvQmb7FUAzj'},
               'Juan': {'key': '6wiyhy9vfz8e4u0m8e56legl0jr21mvf',
@@ -49,20 +49,22 @@ max_items = '25'
 operation = 'sale'
 property_type = 'homes'
 order = 'distance'
-center = '40.4026,-3.6880'
+center = '40.5062,-3.6726' # (las tablas)
 distance = '5000'
 sort = 'asc'
 bankOffer = 'false'
 
-# 40.4667,-3.6889 (plaza de castilla)
-# 40.4169,-3.7032 (sol)
-# 40.4026,-3.6880 (atocha)
-# 40.4144,-3.6693 (sainz de baranda)
-# 40.4378,-3.6904 (gregorio marañon)
+# '40.4667,-3.6889' # (plaza de castilla)
+# '40.4169,-3.7032' # (sol)
+# '40.4026,-3.6880' # (atocha)
+# '40.4144,-3.6693' # (sainz de baranda)
+# '40.4378,-3.6904' # (gregorio marañon)
+# '40.3287,-3.7712' # (leganés)
+# '40.5062,-3.6726' # (las tablas)
 
 
 df_tot = pd.DataFrame()
-limit = 100 # limit * max_items = listings
+limit = 150 # limit * max_items = listings
 
 
 for i in range(1,limit):
@@ -76,7 +78,7 @@ for i in range(1,limit):
                '&sort='+sort+
                '&numPage=%s'+
                '&language='+language) %(i)
-        res = search_api(get_oauth_token(person='Franco'), url)
+        res = search_api(get_oauth_token(person='Juan'), url) #!
         if not res:
             print("No results")
             df_tot = df_tot.reset_index()
@@ -96,5 +98,9 @@ df_tot = df_tot.reset_index()
 df_tot.to_csv(name)
 
 
-# # plazadecastilla: with juan's keys i got __ from PLAZA DE CASTILLA
-# # atocha: with frank's keys i got __ from ATOCHA
+# plazadecastilla: with juan's keys i got 2475 from PLAZA DE CASTILLA
+# atocha: with frank's keys i got 2475 from ATOCHA
+
+# leganes: with juan's keys i got 1350 from LEGANES
+# leganes: with juan's keys i got 1126 from LAS TABLAS
+
