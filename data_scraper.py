@@ -12,7 +12,7 @@ import base64
 # Apikey: 2zky9zdsmvowg05bx61lsmyvxthkewum
 # Secret: HtvQmb7FUAzj
 
-name = 'lastablas.csv' #!
+name = 'malasana.csv' #!
 dictionary = {'Franco': {'key': '2zky9zdsmvowg05bx61lsmyvxthkewum',
                          'secret': 'HtvQmb7FUAzj'},
               'Juan': {'key': '6wiyhy9vfz8e4u0m8e56legl0jr21mvf',
@@ -49,7 +49,7 @@ max_items = '25'
 operation = 'sale'
 property_type = 'homes'
 order = 'distance'
-center = '40.5062,-3.6726' # (las tablas)
+center = '40.4320,-3.6995' # (Malasaña)
 distance = '5000'
 sort = 'asc'
 bankOffer = 'false'
@@ -61,6 +61,7 @@ bankOffer = 'false'
 # '40.4378,-3.6904' # (gregorio marañon)
 # '40.3287,-3.7712' # (leganés)
 # '40.5062,-3.6726' # (las tablas)
+# '40.4320,-3.6995' # (Malasaña)
 
 
 df_tot = pd.DataFrame()
@@ -78,7 +79,7 @@ for i in range(1,limit):
                '&sort='+sort+
                '&numPage=%s'+
                '&language='+language) %(i)
-        res = search_api(get_oauth_token(person='Juan'), url) #!
+        res = search_api(get_oauth_token(person='Franco'), url) #!
         if not res:
             print("No results")
             df_tot = df_tot.reset_index()
@@ -103,4 +104,4 @@ df_tot.to_csv(name)
 
 # leganes: with juan's keys i got 1350 from LEGANES
 # leganes: with juan's keys i got 1126 from LAS TABLAS
-
+# Malasaña with Franco's keys Gianni got 2500 from Malasaña
