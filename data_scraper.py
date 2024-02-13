@@ -12,7 +12,7 @@ import base64
 # Apikey: 2zky9zdsmvowg05bx61lsmyvxthkewum
 # Secret: HtvQmb7FUAzj
 
-name = 'lastablas.csv' #! 'nameoflocation.csv'
+name = 'concepcion.csv' #! 'nameoflocation.csv'
 key_owner = 'Juan' #! can be 'Juan' or 'Franco'
 dictionary = {'Franco': {'key': '2zky9zdsmvowg05bx61lsmyvxthkewum',
                          'secret': 'HtvQmb7FUAzj'},
@@ -50,7 +50,7 @@ max_items = '25'
 operation = 'sale'
 property_type = 'homes'
 order = 'distance'
-center = '40.5062,-3.6726' # (las tablas) #!
+center = '40.4417,-3.6433' # (concepcion)
 distance = '5000'
 sort = 'asc'
 bankOffer = 'false'
@@ -62,6 +62,7 @@ bankOffer = 'false'
 # '40.4378,-3.6904' # (gregorio marañon)
 # '40.3287,-3.7712' # (leganés)
 # '40.5062,-3.6726' # (las tablas)
+# '40.4417,-3.6433' # (concepcion) feb 13 2024
 
 
 df_tot = pd.DataFrame()
@@ -106,5 +107,6 @@ df_tot.to_csv(name)
 # leganes: with juan's keys i got 1126 from LAS TABLAS
 
 # malasana: with Franco's keys Gianni got 2500 from Malasaña
+# concepcion:
 
 
