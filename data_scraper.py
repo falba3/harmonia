@@ -12,12 +12,13 @@ import base64
 # Apikey: 2zky9zdsmvowg05bx61lsmyvxthkewum
 # Secret: HtvQmb7FUAzj
 
-name = 'lastablas.csv' #!
+name = 'lastablas.csv' #! 'nameoflocation.csv'
+key_owner = 'Juan' #! can be 'Juan' or 'Franco'
 dictionary = {'Franco': {'key': '2zky9zdsmvowg05bx61lsmyvxthkewum',
                          'secret': 'HtvQmb7FUAzj'},
               'Juan': {'key': '6wiyhy9vfz8e4u0m8e56legl0jr21mvf',
                        'secret': 'QK5HdSIKI20n'}}
-key_owner = 'Juan'
+
 
 def get_oauth_token(person):
     url = "https://api.idealista.com/oauth/token"
@@ -78,7 +79,7 @@ for i in range(1,limit):
                '&sort='+sort+
                '&numPage=%s'+
                '&language='+language) %(i)
-        res = search_api(get_oauth_token(person=key_owner), url) #!
+        res = search_api(get_oauth_token(person=key_owner), url)
         if not res:
             print("No results")
             df_tot = df_tot.reset_index()
