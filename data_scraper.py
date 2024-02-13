@@ -104,3 +104,6 @@ df_tot.to_csv(name)
 # leganes: with juan's keys i got 1350 from LEGANES
 # leganes: with juan's keys i got 1126 from LAS TABLAS
 
+# malasana: with Franco's keys Gianni got 2500 from Malasaña
+
+
